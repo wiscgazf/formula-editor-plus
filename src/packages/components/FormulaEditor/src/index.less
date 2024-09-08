@@ -1,0 +1,431 @@
+.formula-main {
+  font-size: 14px;
+  color: #333;
+
+  .input-main {
+    background-color: #fff;
+
+    .title-tools {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+
+      .tool-title {
+        margin-bottom: 10px;
+      }
+
+      .title {
+        margin-right: 4px;
+      }
+    }
+
+    .math-main {
+      display: flex;
+
+      .formula-l {
+        width: 72%;
+        flex: 1;
+      }
+
+      .common-r {
+        width: 12px;
+        margin-left: 8px;
+        height: 658px;
+        display: flex;
+        transition: all 0.2s linear;
+
+        &.expand {
+          width: 28%;
+          flex-shrink: 0;
+
+          .math-render {
+            border: 1px solid #ced2d9;
+          }
+
+          .bar {
+            background: #f0f2f5 url("../img/r-icon.png") no-repeat center center;
+            background-size: 80% auto;
+          }
+        }
+
+        .bar {
+          width: 12px;
+          border-radius: 4px 0 0 4px;
+          cursor: pointer;
+          background: #f0f2f5 url("../img/l-icon.png") no-repeat center center;
+          background-size: 80% auto;
+        }
+
+        .math-render {
+          border-radius: 4px;
+          flex: 1;
+          overflow: auto;
+          display: flex;
+          flex-direction: column;
+
+          .title {
+            font-size: 14px;
+            padding: 0 10px;
+            height: 43px;
+            color: #409eff;
+            line-height: 44px;
+            border-bottom: 1px solid #ced2d9;
+          }
+
+          .math-body {
+            overflow: auto;
+            flex: 1;
+          }
+
+          p {
+            width: 100%;
+            padding: 2px 15px;
+            margin: 0;
+
+            &:hover {
+              background-color: #f0f2f5;
+              cursor: pointer;
+            }
+
+            :deep(mjx-container) {
+              text-align: left !important;
+            }
+
+            .MathJax {
+              background-color: #f00;
+              text-align: left !important;
+            }
+          }
+        }
+      }
+    }
+
+    .input-board {
+      border: 1px solid #ced2d9;
+      border-radius: 4px;
+    }
+
+    .input-tool {
+      height: 43px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      border-bottom: 1px solid #ced2d9;
+
+      .use-latex {
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+
+        .latex-item {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 4px;
+          cursor: pointer;
+          color: #000;
+
+          svg {
+            font-size: 16px;
+          }
+
+          &:hover {
+            background-color: #e2e6ea;
+          }
+        }
+      }
+
+      .font-icon {
+        width: 10px;
+        margin-right: 5px;
+      }
+
+      .title {
+        margin: 0 5px;
+        font-family: 'Microsoft YaHei UI', 'Microsoft YaHei', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      }
+
+      .tool-item {
+        position: relative;
+        text-align: center;
+        padding: 6px 10px;
+        background-color: #f0f2f5;
+        border-radius: 4px;
+        margin-right: 10px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 14px;
+        transition: background-color linear 0.15s;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          background-color: #e2e6ea;
+        }
+
+        .popover {
+          top: 100%;
+        }
+
+        .fx {
+          display: flex;
+          align-items: center;
+        }
+
+        .arrow-down {
+          width: 8px;
+          margin-left: 5px;
+        }
+
+        .color {
+          width: 12px;
+        }
+
+        input[type="color"] {
+          border: none;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          opacity: 0;
+          cursor: pointer;
+        }
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+          padding: 0;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+          border: 0;
+        }
+      }
+
+      .r-switch {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+
+        & > span {
+          margin-left: 5px;
+          transition: color linear 0.15s;
+
+          &.latex-active {
+            color: #409eff;
+          }
+        }
+      }
+
+      .switch-box {
+        width: 40px;
+      }
+
+      .switch-box .switch {
+        /* 隐藏checkbox默认样式 */
+        display: none;
+      }
+
+      .switch-box label {
+        /* 通过label扩大点击热区 */
+        position: relative;
+        display: block;
+        margin: 1px;
+        height: 20px;
+        cursor: pointer;
+
+        &.disabled::after {
+          background: rgba(64, 158, 255, .4) !important;
+          cursor: not-allowed;
+        }
+
+        &.disabled::before {
+          cursor: not-allowed;
+        }
+      }
+
+      .switch-box label::before {
+        /* before设置前滚动小圆球 */
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -8px;
+        margin-left: -8px;
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        background-color: #fff;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.06);
+        /* 通过transform、transition属性控制元素过渡进而形成css3动画 */
+        -webkit-transform: translateX(-9px);
+        -moz-transform: translateX(-9px);
+        transform: translateX(-9px);
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+
+      .switch-box .switch:checked ~ label::before {
+        /* 语义：被选中的类名为"switch"元素后面的label元素里的伪类元素，进行更改css样式 */
+        /* 形成伪类结构选择器：":"冒号加布尔值"checked" */
+        /* " Ele1 ~ Ele2 "波浪号在css的作用：连接的元素必须有相同的父元素，选择出现在Ele1后的Ele2（但不必跟在Ele1，也就是说可以并列）  */
+        -webkit-transform: translateX(9px);
+        -moz-transform: translateX(9px);
+        transform: translateX(9px);
+      }
+
+      .switch-box label::after {
+        /* after设置滚动前背景色 */
+        content: "";
+        display: block;
+        border-radius: 10px;
+        height: 20px;
+        background-color: #dcdfe6;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+
+      .switch-box .switch:checked ~ label::after {
+        background-color: #409eff;
+      }
+    }
+
+    .input-area {
+      .temp-ui {
+        width: 0;
+        height: 0;
+        display: none;
+        opacity: 0;
+      }
+
+      .input-ui {
+        font-size: 16px;
+        height: 280px;
+        overflow: hidden;
+
+        #quill-el {
+          width: 100%;
+          height: 280px;
+          overflow: auto;
+          line-height: inherit;
+          font-family: Symbola, Times New Roman, serif;
+          //border: 1px solid #ced2d9;
+          border: none;
+          overflow: auto;
+          box-sizing: border-box;
+          transition: background-color 0.25s linear;
+
+          &.mq-focused {
+            box-shadow: none;
+            //border-color: #409eff;
+            //border-radius: 4px;
+            //background-color: #f0f2f585;
+          }
+        }
+      }
+
+      .input-latex {
+        position: relative;
+
+        .public-s {
+          width: 100%;
+          height: 280px;
+          white-space: pre-wrap;
+          word-break: break-word;
+          display: block;
+          line-height: 1.5;
+          cursor: text;
+          background-clip: padding-box;
+          font-size: 18px;
+          padding: 5px 11px;
+          box-sizing: border-box;
+          border-radius: 4px;
+          font-family: Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
+        }
+
+        .latex-el {
+          color: rgba(0, 0, 0, 0.01);
+          caret-color: #333;
+          background: rgba(0, 0, 0, 0);
+          resize: none;
+          position: absolute;
+          z-index: 2;
+          top: 0;
+          left: 0;
+          outline: none;
+          transition: border-color linear 0.15s;
+          border-color: transparent;
+        }
+
+        #latex-cover {
+          overflow-y: auto;
+          color: #333;
+          caret-color: #333;
+          background-color: #fff;
+          position: relative;
+          z-index: 1;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .preview-footer {
+    .latex-viewer {
+      background: rgb(240, 242, 245);
+      min-height: 280px;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 2px 16px;
+      overflow-x: auto;
+
+      :deep(.MathJax) {
+        text-align: left;
+      }
+    }
+
+    .preview-title {
+      padding: 16px 0px 12px;
+      font-size: 14px;
+      color: rgb(33, 35, 41);
+    }
+  }
+
+  * {
+    scrollbar-color: var(--el-scrollbar-bg-color) var(--el-fill-color-light)
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    height: 6px
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #0003;
+    border-radius: 10px;
+    transition: all .2s ease-in-out
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+    background-color: #0000004d
+  }
+}

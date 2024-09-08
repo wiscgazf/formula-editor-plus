@@ -1,0 +1,47 @@
+{
+  "name": "formula-editor-plus",
+  "private": false,
+  "version": "1.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "build:lib": "vue-tsc -b && vite build --config vite.config.lib.ts",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "mathquill.js",
+    "MathJax",
+    "Latex",
+    "可视化数学公式",
+    "数学公式"
+  ],
+  "files": [
+    "dist/*",
+    "package.json",
+    "README.md"
+  ],
+  "main": "dist/umd/index.js",
+  "module": "dist/es/index.js",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "vue": "^3.4.31"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.27.0",
+    "less": "^4.2.0",
+    "prettier": "^3.3.3",
+    "sass": "^1.77.8",
+    "typescript": "^5.2.2",
+    "typescript-eslint": "^7.16.1",
+    "vite": "^5.3.4",
+    "vue-tsc": "^2.0.26"
+  }
+}
